@@ -1,5 +1,7 @@
 import javax.swing.JFrame;
 
+import controleur.ControleurJeu;
+import modele.ModeleJoueur;
 import vue.VueJeu;
 
 public class Main {
@@ -11,13 +13,17 @@ public class Main {
         fenetre.setResizable(false);
         fenetre.setTitle("Prototype");
 
-        VueJeu vueJeu = new VueJeu();
+        ModeleJoueur joueur = new ModeleJoueur(100, 100);
+
+        VueJeu vueJeu = new VueJeu(joueur);
         fenetre.add(vueJeu);
 
         fenetre.pack();
 
         fenetre.setLocationRelativeTo(null);
         fenetre.setVisible(true);
+
+        ControleurJeu controleurJeu = new ControleurJeu(vueJeu, joueur);
 
     }
 }
