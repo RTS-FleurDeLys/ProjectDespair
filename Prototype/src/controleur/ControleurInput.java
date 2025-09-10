@@ -1,35 +1,33 @@
 package controleur;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.util.LinkedList;
 
-public class ControleurInput implements KeyListener {
+public class ControleurInput extends KeyAdapter {
 
-    private boolean haut = false, bas = false, gauche = false, droite = false;
+    private LinkedList<Integer> pileDirection = new LinkedList<>();
 
     private String direction;
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
 
     @Override
     public void keyPressed(KeyEvent e) {
 
         int codeTouche = e.getKeyCode();
 
-        if (codeTouche == KeyEvent.VK_W) {
-            haut = true;
-        }
-        if (codeTouche == KeyEvent.VK_S) {
-            bas = true;
-        }
-        if (codeTouche == KeyEvent.VK_A) {
-            gauche = true;
-        }
-        if (codeTouche == KeyEvent.VK_D) {
-            droite = true;
+        if (!pileDirection.contains(codeTouche)) {
+            if (codeTouche == KeyEvent.VK_W) {
+                pileDirection.add(KeyEvent.VK_W);
+            }
+            if (codeTouche == KeyEvent.VK_A) {
+                pileDirection.add(KeyEvent.VK_A);
+            }
+            if (codeTouche == KeyEvent.VK_S) {
+                pileDirection.add(KeyEvent.VK_S);
+            }
+            if (codeTouche == KeyEvent.VK_D) {
+                pileDirection.add(KeyEvent.VK_D);
+            }
         }
 
     }
@@ -39,30 +37,37 @@ public class ControleurInput implements KeyListener {
         int codeTouche = e.getKeyCode();
 
         if (codeTouche == KeyEvent.VK_W) {
-            haut = false;
+            pileDirection.remove((Integer) KeyEvent.VK_W);
         }
         if (codeTouche == KeyEvent.VK_A) {
-            gauche = false;
+            pileDirection.remove((Integer) KeyEvent.VK_A);
         }
         if (codeTouche == KeyEvent.VK_S) {
-            bas = false;
+            pileDirection.remove((Integer) KeyEvent.VK_S);
         }
         if (codeTouche == KeyEvent.VK_D) {
-            droite = false;
+            pileDirection.remove((Integer) KeyEvent.VK_D);
         }
     }
 
     public String getDirection() {
         direction = "immobile";
 
-        if (haut) {
-            direction = "haut";
-        } else if (bas) {
-            direction = "bas";
-        } else if (gauche) {
-            direction = "gauche";
-        } else if (droite) {
-            direction = "droite";
+        if (!pileDirection.isEmpty()) {
+            switch (pileDirection.getLast()) {
+                case KeyEvent.VK_W:
+                    direction = "haut";
+                    break;
+                case KeyEvent.VK_A:
+                    direction = "gauche";
+                    break;
+                case KeyEvent.VK_S:
+                    direction = "bas";
+                    break;
+                case KeyEvent.VK_D:
+                    direction = "droite";
+                    break;
+            }
         }
 
         return direction;

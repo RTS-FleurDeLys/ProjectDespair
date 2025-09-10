@@ -1,0 +1,7 @@
+{
+    "java.project.sourcePaths": [
+        "Prototype/src",
+        "Prototype/res"
+    ],
+    "java.dependency.packagePresentation": "hierarchical"
+}

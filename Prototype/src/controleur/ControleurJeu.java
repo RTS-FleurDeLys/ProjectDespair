@@ -1,5 +1,6 @@
 package controleur;
 
+import modele.ModeleCartePrototype;
 import modele.ModeleJoueur;
 import vue.VueJeu;
 
@@ -13,12 +14,15 @@ public class ControleurJeu implements Runnable {
     private ControleurInput controleurInput = new ControleurInput();
 
     private ModeleJoueur joueur;
+    private ModeleCartePrototype carte = new ModeleCartePrototype(0);
 
     public ControleurJeu(VueJeu vueJeu, ModeleJoueur joueur) {
 
         this.joueur = joueur;
 
         this.vueJeu = vueJeu;
+        carte.generationCarte();
+        this.vueJeu.setCarte(carte);
         vueJeu.addKeyListener(controleurInput);
 
         threadJeu = new Thread(this);
@@ -28,16 +32,20 @@ public class ControleurJeu implements Runnable {
     @Override
     public void run() {
 
-        double intervalleImage = 1000000000 / FPS;
+        double intervalleFrame = 1000000000 / FPS;
         double delta = 0;
         long dernierTemps = System.nanoTime();
         long tempsActuel;
+
+        long sec = 0;
+        int nbFramesDessine = 0;
 
         while (threadJeu != null) {
 
             tempsActuel = System.nanoTime();
 
-            delta += (tempsActuel - dernierTemps) / intervalleImage;
+            delta += (tempsActuel - dernierTemps) / intervalleFrame;
+            sec += tempsActuel - dernierTemps;
 
             dernierTemps = tempsActuel;
 
@@ -45,6 +53,13 @@ public class ControleurJeu implements Runnable {
                 update();
                 vueJeu.repaint();
                 delta--;
+                nbFramesDessine++;
+            }
+
+            if (sec >= 1000000000) {
+                System.out.println("FPS : " + nbFramesDessine);
+                sec = 0;
+                nbFramesDessine = 0;
             }
 
         }

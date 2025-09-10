@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import modele.ModeleCartePrototype;
 import modele.ModeleJoueur;
 
 public class VueJeu extends JPanel {
@@ -23,6 +24,12 @@ public class VueJeu extends JPanel {
     final int ECRAN_LARGEUR = ECRAN_LARGEUR_TUILES * TAILLE_TUILE; // 1024px.
 
     private ModeleJoueur joueur;
+    private ModeleCartePrototype carte;
+
+    public void setCarte(ModeleCartePrototype carte) {
+        this.carte = carte;
+        repaint();
+    }
 
     public VueJeu(ModeleJoueur joueur) {
 
@@ -41,6 +48,17 @@ public class VueJeu extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
+
+        g2.setColor(Color.RED);
+
+        for (int i = 0; i < carte.getLongeur(); i++) {
+            for (int j = 0; j < carte.getLargeur(); j++) {
+
+                if (carte.getTuile(i, j) == 1) {
+                    g2.fillRect(j * TAILLE_TUILE, i * TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
+                }
+            }
+        }
 
         g2.setColor(Color.WHITE);
 
