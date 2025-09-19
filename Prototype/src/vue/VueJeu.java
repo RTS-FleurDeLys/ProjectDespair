@@ -7,8 +7,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import modele.ModeleCartePrototype;
-import modele.ModeleJoueur;
+import modele.ModeleMonde;
 
 public class VueJeu extends JPanel {
 
@@ -23,17 +22,15 @@ public class VueJeu extends JPanel {
     final int ECRAN_HAUTEUR = ECRAN_HAUTEUR_TUILES * TAILLE_TUILE; // 768px.
     final int ECRAN_LARGEUR = ECRAN_LARGEUR_TUILES * TAILLE_TUILE; // 1024px.
 
-    private ModeleJoueur joueur;
-    private ModeleCartePrototype carte;
+    final int MILIEU_ECRAN_X = ECRAN_LARGEUR / 2 - TAILLE_TUILE / 2;
+    final int MILIEU_ECRAN_Y = ECRAN_HAUTEUR / 2 - TAILLE_TUILE / 2;
 
-    public void setCarte(ModeleCartePrototype carte) {
-        this.carte = carte;
-        repaint();
-    }
+    private ModeleMonde monde;
 
-    public VueJeu(ModeleJoueur joueur) {
 
-        this.joueur = joueur;
+    public VueJeu(ModeleMonde monde) {
+
+        this.monde = monde;
 
         this.setPreferredSize(new Dimension(ECRAN_LARGEUR, ECRAN_HAUTEUR));
         this.setBackground(Color.BLACK);
@@ -41,6 +38,7 @@ public class VueJeu extends JPanel {
         this.setFocusable(true);
 
     }
+
 
     @Override
     public void paintComponent(Graphics g) {
@@ -51,18 +49,18 @@ public class VueJeu extends JPanel {
 
         g2.setColor(Color.RED);
 
-        for (int i = 0; i < carte.getLongeur(); i++) {
-            for (int j = 0; j < carte.getLargeur(); j++) {
+        for (int i = 0; i < monde.longeurCarte(); i++) {
+            for (int j = 0; j < monde.largeurCarte(); j++) {
 
-                if (carte.getTuile(i, j) == 1) {
-                    g2.fillRect(j * TAILLE_TUILE, i * TAILLE_TUILE, TAILLE_TUILE, TAILLE_TUILE);
+                if (monde.tuileCarte(i, j) == 1) {
+                    g2.fillRect(MILIEU_ECRAN_X + (j * TAILLE_TUILE - monde.coordoneeJoueurX()), MILIEU_ECRAN_Y + (i * TAILLE_TUILE - monde.coordoneeJoueurY()), TAILLE_TUILE, TAILLE_TUILE);
                 }
             }
         }
 
         g2.setColor(Color.WHITE);
 
-        g2.fillRect(joueur.getPositionX(), joueur.getPositionY(), TAILLE_TUILE, TAILLE_TUILE);
+        g2.fillRect(MILIEU_ECRAN_X, MILIEU_ECRAN_Y, TAILLE_TUILE, TAILLE_TUILE);
 
     }
 }

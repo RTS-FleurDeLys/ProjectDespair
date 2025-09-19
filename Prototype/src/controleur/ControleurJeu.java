@@ -1,7 +1,6 @@
 package controleur;
 
-import modele.ModeleCartePrototype;
-import modele.ModeleJoueur;
+import modele.ModeleMonde;
 import vue.VueJeu;
 
 public class ControleurJeu implements Runnable {
@@ -11,21 +10,19 @@ public class ControleurJeu implements Runnable {
     private Thread threadJeu;
 
     private VueJeu vueJeu;
-    private ControleurInput controleurInput = new ControleurInput();
+    private ControleurInput inputs;
+    private ModeleMonde monde;
 
-    private ModeleJoueur joueur;
-    private ModeleCartePrototype carte = new ModeleCartePrototype(0);
-
-    public ControleurJeu(VueJeu vueJeu, ModeleJoueur joueur) {
-
-        this.joueur = joueur;
+    public ControleurJeu(VueJeu vueJeu,ControleurInput inputs, ModeleMonde monde) {
 
         this.vueJeu = vueJeu;
-        carte.generationCarte();
-        this.vueJeu.setCarte(carte);
-        vueJeu.addKeyListener(controleurInput);
+        this.inputs = inputs;
+        this.monde = monde;
 
         threadJeu = new Thread(this);
+    }
+
+    public void demarrage() {
         threadJeu.start();
     }
 
@@ -67,7 +64,11 @@ public class ControleurJeu implements Runnable {
     }
 
     private void update() {
-        joueur.bouger(controleurInput.getDirection());
+        monde.bougerJoueur(inputs.getDirection());
+        // Éventuellement 
+        // monde.bougerMonstres()
+        // monde.bougerBoss()
+        // etc
     }
 
 }

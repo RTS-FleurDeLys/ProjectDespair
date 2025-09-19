@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class ModeleCartePrototype extends ModeleCarte {
 
     public ModeleCartePrototype(long seed) {
-        super(seed, 12, 16);
+        super(seed, 24, 32);
     }
 
     @Override
