@@ -3,7 +3,7 @@
 # ProjectDespair
 
 Bonjour mon nom est Bastien Deveault je suis un étudiant en informatique au Cégep.
-Ce dépôt contient le prototype d'un jeu vidéo en cours de développement. Celui-ci comporte un moteur 2D codé entièrement en Java sans l'aide de librairie extèrne. 
+Ce dépôt contient le prototype d'un jeu vidéo en cours de développement. Celui-ci inclus moteur écrit entièrement en Java, sans bibliothèque externe.
 
 Le développement de ce projet est fait avec l'aide d'IA générative comme outil d'assistance (relecture du code, aide au débogage et assistance à l'optimisation). Tout le code est relu, compris et intégré par moi-même avant d’être commité.
 
