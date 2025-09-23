@@ -49,8 +49,14 @@ public class VueJeu extends JPanel {
 
         g2.setColor(Color.RED);
 
-        for (int i = 0; i < monde.longeurCarte(); i++) {
-            for (int j = 0; j < monde.largeurCarte(); j++) {
+        int debutEcranX = Math.max(0, (monde.coordoneeJoueurX() - MILIEU_ECRAN_X) / TAILLE_TUILE);
+        int finEcranX = Math.min(monde.largeurCarte(), (monde.coordoneeJoueurX() + MILIEU_ECRAN_X) / TAILLE_TUILE + 2);
+
+        int debutEcranY = Math.max(0, (monde.coordoneeJoueurY() - MILIEU_ECRAN_Y) / TAILLE_TUILE);
+        int finEcranY = Math.min(monde.longeurCarte(), (monde.coordoneeJoueurY() + MILIEU_ECRAN_Y) / TAILLE_TUILE + 2);
+
+        for (int i = debutEcranY; i < finEcranY; i++) {
+            for (int j = debutEcranX; j < finEcranX; j++) {
 
                 if (monde.tuileCarte(i, j) == 1) {
                     g2.fillRect(MILIEU_ECRAN_X + (j * TAILLE_TUILE - monde.coordoneeJoueurX()), MILIEU_ECRAN_Y + (i * TAILLE_TUILE - monde.coordoneeJoueurY()), TAILLE_TUILE, TAILLE_TUILE);
