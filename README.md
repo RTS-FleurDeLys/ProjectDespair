@@ -37,13 +37,13 @@ CONTRÔLEUR
 - Mouvement du joueur avec WASD (politique de dèrnière touche pressée prioritaire)
 - Caméra centrée sur le joueur (calcul des bordures de l'écran pour afficher uniquement les tuiles visibles)
 - Chargement d'une carte depuis res/cartes/ et affichage tuile par tuile dans la vue du jeu
+- Système de collisions du joueur
 
 # Prochaines étapes
 
-- Système de collisions du joueur
+- Système d'entités (monstres et PNJ) avec ia simple
 - Génération procédurale des cartes avec un seed
 - Ajout de sprites pour les tuiles et le joueur
-- Système d'entités (monstres et PNJ) avec ia simple
 
 # Prérequis pour pouvoir faire tourner le projet
 
