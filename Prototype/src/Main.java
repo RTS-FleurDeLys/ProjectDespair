@@ -1,11 +1,14 @@
 import javax.swing.JFrame;
 
+import controleur.ControleurCollision;
 import controleur.ControleurInput;
 import controleur.ControleurJeu;
+import controleur.ControleurMouvement;
 import modele.ModeleCarte;
 import modele.ModeleCartePrototype;
 import modele.ModeleJoueur;
 import modele.ModeleMonde;
+import modele.ModeleTuiles;
 import vue.VueJeu;
 
 public class Main {
@@ -14,12 +17,15 @@ public class Main {
 
         System.setProperty("sun.java2d.opengl", "true");
 
-        ModeleJoueur joueur = new ModeleJoueur(500, 500);
+        ModeleJoueur joueur = new ModeleJoueur(16 * 64, 12 * 64);
         ModeleCarte carte = new ModeleCartePrototype(0);
         ModeleMonde monde = new ModeleMonde(joueur, carte);
-        VueJeu vueJeu = new VueJeu(monde);
+        ModeleTuiles tuiles = new ModeleTuiles();
+        VueJeu vueJeu = new VueJeu(monde, tuiles);
         ControleurInput inputs = new ControleurInput();
-        ControleurJeu jeu = new ControleurJeu(vueJeu, inputs, monde);
+        ControleurMouvement mouvement = new ControleurMouvement(monde);
+        ControleurCollision collision = new ControleurCollision(monde, tuiles);
+        ControleurJeu jeu = new ControleurJeu(vueJeu, inputs, mouvement, collision);
 
         carte.generationCarte();
         vueJeu.addKeyListener(inputs);

@@ -18,19 +18,19 @@ public abstract class ModeleCarte {
         return largeur;
     }
 
-    public int getTuile(int ligne, int colonne) {
-        return carte[ligne][colonne];
+    public int getTuile(int colonne, int ligne) {
+        return carte[colonne][ligne];
     }
 
-    protected void setTuile(int ligne, int colonne, int valeur) {
-        carte[ligne][colonne] = valeur;
+    protected void setTuile(int colonne, int ligne, int valeur) {
+        carte[colonne][ligne] = valeur;
     }
 
-    public ModeleCarte(long seed, int longeur, int largeur) {
+    public ModeleCarte(long seed, int largeur, int longeur) {
         this.seed = seed;
         this.longeur = longeur;
         this.largeur = largeur;
-        this.carte = new int[longeur][largeur];
+        this.carte = new int[largeur][longeur];
     }
 
     abstract public void generationCarte();

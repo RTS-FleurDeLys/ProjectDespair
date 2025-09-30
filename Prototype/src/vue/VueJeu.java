@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import modele.ModeleMonde;
+import modele.ModeleTuiles;
 
 public class VueJeu extends JPanel {
 
@@ -26,11 +27,12 @@ public class VueJeu extends JPanel {
     final int MILIEU_ECRAN_Y = ECRAN_HAUTEUR / 2 - TAILLE_TUILE / 2;
 
     private ModeleMonde monde;
+    private ModeleTuiles tuiles;
 
-
-    public VueJeu(ModeleMonde monde) {
+    public VueJeu(ModeleMonde monde, ModeleTuiles tuiles) {
 
         this.monde = monde;
+        this.tuiles = tuiles;
 
         this.setPreferredSize(new Dimension(ECRAN_LARGEUR, ECRAN_HAUTEUR));
         this.setBackground(Color.BLACK);
@@ -39,15 +41,12 @@ public class VueJeu extends JPanel {
 
     }
 
-
     @Override
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
-
-        g2.setColor(Color.RED);
 
         int debutEcranX = Math.max(0, (monde.coordoneeJoueurX() - MILIEU_ECRAN_X) / TAILLE_TUILE);
         int finEcranX = Math.min(monde.largeurCarte(), (monde.coordoneeJoueurX() + MILIEU_ECRAN_X) / TAILLE_TUILE + 2);
@@ -57,10 +56,11 @@ public class VueJeu extends JPanel {
 
         for (int i = debutEcranY; i < finEcranY; i++) {
             for (int j = debutEcranX; j < finEcranX; j++) {
+                g2.setColor(tuiles.getSpriteTuile(monde.tuileCarte(j, i)));
 
-                if (monde.tuileCarte(i, j) == 1) {
-                    g2.fillRect(MILIEU_ECRAN_X + (j * TAILLE_TUILE - monde.coordoneeJoueurX()), MILIEU_ECRAN_Y + (i * TAILLE_TUILE - monde.coordoneeJoueurY()), TAILLE_TUILE, TAILLE_TUILE);
-                }
+                g2.fillRect(MILIEU_ECRAN_X + (j * TAILLE_TUILE - monde.coordoneeJoueurX()),
+                        MILIEU_ECRAN_Y + (i * TAILLE_TUILE - monde.coordoneeJoueurY()), TAILLE_TUILE, TAILLE_TUILE);
+
             }
         }
 

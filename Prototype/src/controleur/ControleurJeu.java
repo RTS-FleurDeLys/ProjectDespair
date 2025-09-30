@@ -10,14 +10,19 @@ public class ControleurJeu implements Runnable {
     private Thread threadJeu;
 
     private VueJeu vueJeu;
-    private ControleurInput inputs;
-    private ModeleMonde monde;
 
-    public ControleurJeu(VueJeu vueJeu,ControleurInput inputs, ModeleMonde monde) {
+    private ControleurInput inputs;
+    private ControleurMouvement mouvement;
+    private ControleurCollision collision;
+
+    public ControleurJeu(VueJeu vueJeu, ControleurInput inputs, ControleurMouvement mouvement,
+            ControleurCollision collision) {
 
         this.vueJeu = vueJeu;
+
         this.inputs = inputs;
-        this.monde = monde;
+        this.mouvement = mouvement;
+        this.collision = collision;
 
         threadJeu = new Thread(this);
     }
@@ -64,8 +69,10 @@ public class ControleurJeu implements Runnable {
     }
 
     private void update() {
-        monde.bougerJoueur(inputs.getDirection());
-        // Éventuellement 
+
+        mouvement.mouvementJoueur(inputs.getDirection());
+        collision.collisionJoueurMur(inputs.getDirection());
+        // Éventuellement
         // monde.bougerMonstres()
         // monde.bougerBoss()
         // etc

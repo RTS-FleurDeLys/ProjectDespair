@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class ModeleCartePrototype extends ModeleCarte {
 
     public ModeleCartePrototype(long seed) {
-        super(seed, 24, 32);
+        super(seed, 32, 24);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ModeleCartePrototype extends ModeleCarte {
 
                 for (int j = 0; j < this.getLargeur(); j++) {
                     tuile = Integer.parseInt(tuilesLigne[j]);
-                    setTuile(i, j, tuile);
+                    setTuile(j, i, tuile);
                 }
             }
             bufferedReader.close();
