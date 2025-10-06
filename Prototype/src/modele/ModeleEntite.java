@@ -1,5 +1,6 @@
 package modele;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 
 public abstract class ModeleEntite {
@@ -9,6 +10,8 @@ public abstract class ModeleEntite {
     private int vitesse;
 
     private Rectangle hitBox;
+
+    private Color sprite;
 
     public int getPositionX() {
         return positionX;
@@ -20,6 +23,10 @@ public abstract class ModeleEntite {
 
     public int getVitesse() {
         return vitesse;
+    }
+
+    public Color getSprite() {
+        return sprite;
     }
 
     public void mouvementX(int x) {
@@ -52,11 +59,12 @@ public abstract class ModeleEntite {
         return hitBox.x + hitBox.width;
     }
 
-    public ModeleEntite(int positionX, int positionY, int vitesse, Rectangle hitBox) {
+    public ModeleEntite(int positionX, int positionY, int vitesse, Rectangle hitBox, Color sprite) {
         this.positionX = positionX;
         this.positionY = positionY;
         this.vitesse = vitesse;
         this.hitBox = hitBox;
+        this.sprite = sprite;
     }
 
 }

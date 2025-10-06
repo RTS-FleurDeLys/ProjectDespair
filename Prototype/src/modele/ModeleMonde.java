@@ -14,6 +14,10 @@ public class ModeleMonde {
 
     // FONCTIONS CONCERNANT LE JOUEUR
 
+    public ModeleJoueur getJoueur() {
+        return joueur;
+    }
+
     public int coordoneeJoueurX() {
         return joueur.getPositionX();
     }
@@ -62,6 +66,14 @@ public class ModeleMonde {
 
     public int largeurCarte() {
         return carteCourante.getLargeur();
+    }
+
+    public int nbMonstres() {
+        return carteCourante.nbMonstres();
+    }
+
+    public ModeleMonstre monstre(int i) {
+        return carteCourante.getMonstre(i);
     }
 
 }

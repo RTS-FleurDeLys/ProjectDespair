@@ -48,6 +48,9 @@ public class VueJeu extends JPanel {
 
         Graphics2D g2 = (Graphics2D) g;
 
+        /*
+         * On commence par dessiner toutes les tuiles de l'écran.
+         */
         int debutEcranX = Math.max(0, (monde.coordoneeJoueurX() - MILIEU_ECRAN_X) / TAILLE_TUILE);
         int finEcranX = Math.min(monde.largeurCarte(), (monde.coordoneeJoueurX() + MILIEU_ECRAN_X) / TAILLE_TUILE + 2);
 
@@ -64,7 +67,21 @@ public class VueJeu extends JPanel {
             }
         }
 
-        g2.setColor(Color.WHITE);
+        /*
+         * Ensuite, on dessine les monstres de la carte.
+         */
+
+        for (int i = 0; i < monde.nbMonstres(); i++) {
+            g2.setColor(monde.monstre(i).getSprite());
+            g2.fillRect(MILIEU_ECRAN_X + (monde.monstre(i).getPositionX() - monde.coordoneeJoueurX()),
+                    MILIEU_ECRAN_X + (monde.monstre(i).getPositionY() - monde.coordoneeJoueurY()), TAILLE_TUILE,
+                    TAILLE_TUILE);
+        }
+
+        /*
+         * Et pour finir, on Dessine le joueur par dessus tout.
+         */
+        g2.setColor(monde.getJoueur().getSprite());
 
         g2.fillRect(MILIEU_ECRAN_X, MILIEU_ECRAN_Y, TAILLE_TUILE, TAILLE_TUILE);
 

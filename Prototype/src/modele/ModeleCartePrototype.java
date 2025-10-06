@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 public class ModeleCartePrototype extends ModeleCarte {
 
     public ModeleCartePrototype(long seed) {
-        super(seed, 32, 24);
+        super(seed, 32, 24, 5);
+
     }
 
     @Override
@@ -37,6 +38,12 @@ public class ModeleCartePrototype extends ModeleCarte {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        setMonstre(0, new ModeleMonstrePrototype(16 * 64, 6 * 64));
+        setMonstre(1, new ModeleMonstrePrototype(16 * 64, 18 * 64));
+        setMonstre(2, new ModeleMonstrePrototype(6 * 64, 12 * 64));
+        setMonstre(3, new ModeleMonstrePrototype(22 * 64, 12 * 64));
+        setMonstre(4, new ModeleMonstrePrototype(22 * 64, 4 * 64));
 
         System.out.println("LA CARTE EST BIEN GÉNÉRÉE!");
     }
