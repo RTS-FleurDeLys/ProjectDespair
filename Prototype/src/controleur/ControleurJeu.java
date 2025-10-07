@@ -71,6 +71,7 @@ public class ControleurJeu implements Runnable {
     private void update() {
 
         mouvement.mouvementJoueur(inputs.getDirection());
+        mouvement.mouvementMonstres();
         collision.collisionJoueurMur(inputs.getDirection());
         // Éventuellement
         // monde.bougerMonstres()

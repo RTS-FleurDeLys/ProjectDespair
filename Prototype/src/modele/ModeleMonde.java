@@ -76,4 +76,8 @@ public class ModeleMonde {
         return carteCourante.getMonstre(i);
     }
 
+    public ModeleMonstre[] monstres() {
+        return carteCourante.getMonstres();
+    }
+
 }

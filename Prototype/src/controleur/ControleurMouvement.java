@@ -1,6 +1,7 @@
 package controleur;
 
 import modele.ModeleMonde;
+import modele.ModeleMonstre;
 
 public class ControleurMouvement {
 
@@ -24,6 +25,27 @@ public class ControleurMouvement {
             case "droite":
                 monde.bougerJoueurX(monde.vitesseJoueur());
                 break;
+        }
+    }
+
+    public void mouvementMonstres() {
+        ModeleMonstre[] monstres = monde.monstres();
+
+        for (int i = 0 ; i < monstres.length ; i++) {
+            switch (monstres[i].mouvementIA()) {
+                case "haut":
+                monstres[i].mouvementY(Math.negateExact(monstres[i].getVitesse()));
+                break;
+            case "bas":
+                monstres[i].mouvementY(monstres[i].getVitesse());
+                break;
+            case "gauche":
+                monstres[i].mouvementX(Math.negateExact(monstres[i].getVitesse()));
+                break;
+            case "droite":
+                monstres[i].mouvementX(monstres[i].getVitesse());
+                break;
+            }
         }
     }
 

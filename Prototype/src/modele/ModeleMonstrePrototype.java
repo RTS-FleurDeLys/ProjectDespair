@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 public class ModeleMonstrePrototype extends ModeleMonstre {
 
     public ModeleMonstrePrototype(int positionX, int positionY) {
-        super(positionX, positionY, 4, new Rectangle(positionX, positionY, 64, 64), Color.BLUE);
+        super(positionX, positionY, 1, new Rectangle(positionX, positionY, 64, 64), Color.BLUE);
     }
 
     /*
@@ -25,7 +25,7 @@ public class ModeleMonstrePrototype extends ModeleMonstre {
         if (stateIA1 == 0) {
             stateIA2 = (int) (Math.random() * 4);
         }
-        if (stateIA1 < 10) {
+        if (stateIA1 < 180) {
             switch (stateIA2) {
                 case 0:
                     direction = "haut";
@@ -44,7 +44,7 @@ public class ModeleMonstrePrototype extends ModeleMonstre {
                     break;
             }
             stateIA1++;
-        } else if (stateIA1 < 14) {
+        } else if (stateIA1 < 230) {
             stateIA1++;
         } else {
             stateIA1 = 0;

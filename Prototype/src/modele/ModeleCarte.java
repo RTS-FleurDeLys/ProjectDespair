@@ -35,6 +35,10 @@ public abstract class ModeleCarte {
         monstres[i] = monstre;
     }
 
+    public ModeleMonstre[] getMonstres() {
+        return monstres;
+    }
+
     public int nbMonstres() {
         return monstres.length;
     }
