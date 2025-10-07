@@ -42,10 +42,12 @@ CONTRÔLEUR
 - Caméra centrée sur le joueur (calcul des bordures de l'écran pour afficher uniquement les tuiles visibles).
 - Chargement d'une carte depuis res/cartes/ et affichage tuile par tuile dans la vue du jeu.
 - Système de collisions du joueur avec murs.
+- Système d'entités (monstres) avec ia simple.
 
 # Prochaines étapes
 
-- Système d'entités (monstres et PNJ) avec ia simple.
+- Système de combat simple (élimination des enemis avec attaque et prise de dégats si collision)
+- Points de vie et écran de mort
 - Génération procédurale des cartes avec un seed.
 - Ajout de sprites pour les tuiles et le joueur.
 
